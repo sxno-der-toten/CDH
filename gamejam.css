@@ -13,7 +13,7 @@ table {
   }
   
   .highlight {
-    background-color: yellow;
+    background-color: blue;
   }
 #gameBoard{
   display: flex;
