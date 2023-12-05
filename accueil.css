@@ -1,0 +1,38 @@
+.diviser {
+    display: flex;
+    
+    margin-top: 100px;
+
+}
+
+
+.demon {
+  
+   margin-left: 14%;
+   
+   
+    
+}
+
+.titre {
+    margin-right: 14%;
+   
+   
+
+  
+    
+}
+
+.boutton{
+     display: flex;
+     justify-content: center;
+     margin-top: 60px;
+     height: 182;
+     width: 302;
+
+}
+
+body{
+    background-image: url('images/background.jpg');
+    background-size: cover;
+}
