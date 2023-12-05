@@ -2,20 +2,45 @@ table {
     border-collapse: collapse;
   }
   
-  table, th, td {
-    border: 1px solid black;
-  }
+ 
   
   td {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     text-align: center;
+    background-image: url('tronc.png');
+    background-size: cover;
+    
+    
   }
   
+
+   
+    
   .highlight {
-    background-color: blue;
+    background-image: url('perso.png');
+    background-size: cover ;
+   
+    
   }
-#gameBoard{
-  display: flex;
-  justify-content: center;
-}
+
+  .obstacle {
+    width: 100px;
+    height: 100px;
+  } 
+
+  #gameBoard{
+
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+  } 
+
+  #score{
+    text-align: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+ 
+  
