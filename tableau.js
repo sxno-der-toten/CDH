@@ -4,11 +4,11 @@ let col = 2;
 
 // Fonction pour mettre à jour la position du rond dans le tableau
 function updatePosition() {
-  const cells = document.querySelectorAll('#gameBoard td');
+  const cells = document.querySelectorAll('#gameBoard2 td');
   cells.forEach(cell => {
     cell.classList.remove('highlight');
   });
-  const currentCell = document.querySelector(`#gameBoard tr:nth-child(${row + 1}) td:nth-child(${col + 1})`);
+  const currentCell = document.querySelector(`#gameBoard2 tr:nth-child(${row + 1}) td:nth-child(${col + 1})`);
   
   currentCell.classList.add('highlight');
 }
@@ -39,7 +39,3 @@ document.addEventListener('keydown', function(event) {
 
   updatePosition();
 });
-
-
-
-

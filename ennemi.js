@@ -1,45 +1,71 @@
+
+let obstacles = [];
+let alternate = false;
+
+
 function generateObstacle() {
     let obstacle = [];
-  
-    while (obstacle.length !== 2) {
-      let nombreAleatoire = Math.floor(Math.random() * 5);
-      obstacle.push(nombreAleatoire);
-  
-      if (obstacle[0] === obstacle[1]) {
-        while (obstacle[0] === obstacle[1]) {
-          obstacle.pop();
-          let nouveauNombre = Math.floor(Math.random() * 5);
-          obstacle.push(nouveauNombre);
+
+    if (alternate) {
+        let singleObstacleColumn = Math.floor(Math.random() * 5);
+        obstacle.push(singleObstacleColumn);
+    } else {
+        while (obstacle.length !== 2) {
+            let nombreAleatoire = Math.floor(Math.random() * 5);
+            if (!obstacle.includes(nombreAleatoire)) {
+                obstacle.push(nombreAleatoire);
+            }
         }
-      }
     }
-  
+
+    alternate = !alternate;
     return obstacle;
-  }
-  
-  function updateObstacles() {
-    const obstaclesFirstRow = generateObstacle();
-    var firstRow = document.getElementById('gameBoard').getElementsByTagName('tr')[0];
-    var cells = firstRow.getElementsByTagName('td');
-  
-    for (let cell of cells) {
-      cell.innerHTML = ''; 
+}
+
+function addRowWithObstacles() {
+    const gameBoard = document.getElementById('gameBoard');
+    const newRow = gameBoard.insertRow(0);
+
+    for (let i = 0; i < 5; i++) {
+        const cell = newRow.insertCell(i);
+        cell.innerHTML = '';
+
+        if (obstacles.includes(i)) {
+            let obstacleImage = document.createElement('img');
+            if (obstacles.length === 1) {
+                obstacleImage.src = 'images/gomugomu.png';
+            } else {
+                if (obstacles.indexOf(i) === 0) {
+                    obstacleImage.src = 'images/scarabee.png';
+                } else {
+                    obstacleImage.src = 'images/bee.png';
+                }
+            }
+            obstacleImage.classList.add('obstacle');
+            cell.appendChild(obstacleImage);
+        }
     }
+}
+
+function updateObstacles() {
   
-    for (let i = 0; i < obstaclesFirstRow.length; i++) {
-     
-      let obstacleImage = document.createElement('img');
-      if (i === 0) {
-        obstacleImage.src = 'scaraber.png'; 
-      } else {
-        obstacleImage.src = 'perso.png'; 
-      }
-      obstacleImage.classList.add('obstacle');
-  
-      
-      cells[obstaclesFirstRow[i]].appendChild(obstacleImage);
+
+    const gameBoard = document.getElementById('gameBoard');
+    const rows = gameBoard.getElementsByTagName('tr');
+    
+
+    if (obstacles.length === 0) {
+        obstacles = generateObstacle();
+        addRowWithObstacles();
+    } else {
+        gameBoard.deleteRow(rows.length - 1);
+
+        obstacles = generateObstacle();
+        addRowWithObstacles();
     }
-  }
+
   
-  setInterval(updateObstacles, 2000);
- 
+    return true;
+}
+
+setInterval(updateObstacles, 500);
